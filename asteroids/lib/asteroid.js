@@ -6,7 +6,7 @@ window.Asteroids = (function(Asteroids) {
     var LENGTH = 3;
     Asteroids.MovingObject.apply(this, [attr]);
     this.color = Asteroid.randomColor();
-    this.radius = attr["radius"] || 60;
+    this.radius = attr.radius || 60;
     this.vel = Asteroids.Util.randomVec(LENGTH);
 
   };
@@ -18,6 +18,13 @@ window.Asteroids = (function(Asteroids) {
     }
 
     return color;
+  };
+
+  toiletImg = new Image();
+  toiletImg.src = 'toilet.png';
+
+  Asteroid.prototype.draw = function(ctx) {
+    ctx.drawImage(toiletImg, this.pos[0], this.pos[1]);
   };
 
   Asteroids.Util.inherits(Asteroid, Asteroids.MovingObject);

@@ -11,17 +11,19 @@
     <script src="lib/ship.js"></script>
     <script src="lib/bullet.js"></script>
     <script src="lib/keymaster.js"></script>
+    <link rel="stylesheet" type="text/css" href="asteroids.css">
   </head>
-  <body>
+  <h1>Asteroids</h1>
+  <div class="asteroids">
     <canvas id="game-canvas"></canvas>
 
     <script>
       var canvasEl = document.getElementById("game-canvas");
       canvasEl.height = window.innerHeight - 200;
-      canvasEl.width = window.innerWidth;
+      canvasEl.width = window.innerWidth - 20;
       var newGame = new Asteroids.Game(canvasEl.width, canvasEl.height)
       var ctx = canvasEl.getContext("2d");
       new Asteroids.GameView(newGame, ctx).start();
     </script>
-  </body>
+  </div>
 </html>
