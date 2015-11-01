@@ -2,15 +2,22 @@ window.Asteroids = (function(Asteroids) {
   var Ship = Asteroids.Ship = function(attr) {
     Asteroids.MovingObject.apply(this, [attr]);
 
-    this.color = "red";
-    this.radius = 25;
-    this.vel = [0,0];
+    this.radius = 20;
+    this.vel = [0, 0];
     this.pos = attr.pos;
     this.tickCount = 1;
     this.shootingDir = [0, -1];
 
-    this.DTHETA = 2 * Math.PI / 64;
+    this.SPRITEWIDTH = 41;
+    this.SPRITEHEIGHT = 42;
+    this.SPRITECOLUMNS = 8;
+    this.SPRITEROWS = 8;
+    this.SPRITEFRAMES = 64;
+    this.DTHETA = 2 * Math.PI / this.SPRITEFRAMES;
+    this.SHIPIMAGE = new Image();
+    this.SHIPIMAGE.src = "/Users/nathan_specht/workspace/w6d1/asteroids/Fother-penguin.png";
   };
+
   Asteroids.Util.inherits(Ship, Asteroids.MovingObject);
 
   Ship.prototype.relocate = function () {
@@ -21,6 +28,7 @@ window.Asteroids = (function(Asteroids) {
   Ship.prototype.power = function (impulse) {
     this.vel[0] += impulse[0];
     this.vel[1] += impulse[1];
+
     if (this.vel[1] > 7) {
       this.vel[1] = 7;
     } else if (this.vel[1] < -7) {
@@ -43,13 +51,7 @@ window.Asteroids = (function(Asteroids) {
     this.game.bullets.push(bullet);
   };
 
-  var shipImg = new Image();
-  shipImg.src = '/Users/nathan_specht/workspace/w6d1/asteroids/Fother-penguin.png';
-
-  Ship.prototype.draw = function () {
-    var sx = this.tickCount % 8 * 41;
-    var sy = Math.floor(this.tickCount / 8) * 42;
-    ctx.drawImage(shipImg, sx, sy, 41, 42, this.pos[0] - this.radius, this.pos[1] - this.radius, 2 * this.radius, 2 * this.radius);
+  Ship.prototype.tick = function () {
     this.tickCount += 1;
     this.rotate();
     if (this.tickCount === 64) {
@@ -57,6 +59,23 @@ window.Asteroids = (function(Asteroids) {
     }
   };
 
+  Ship.prototype.spriteCoords = function () {
+    var sx = this.tickCount % this.SPRITECOLUMNS * this.SPRITEWIDTH;
+    var sy = Math.floor(this.tickCount / this.SPRITEROWS) * this.SPRITEHEIGHT;
+    return [sx, sy];
+  };
+
+  Ship.prototype.draw = function () {
+    ctx.drawImage(
+      this.SHIPIMAGE,
+      this.spriteCoords()[0], this.spriteCoords()[1],
+      this.SPRITEWIDTH, this.SPRITEHEIGHT,
+      this.pos[0] - this.radius, this.pos[1] - this.radius,
+      2 * this.radius, 2 * this.radius
+    );
+
+    this.tick();
+  };
 
   return Asteroids;
 })(window.Asteroids || {});
