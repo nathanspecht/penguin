@@ -7,7 +7,7 @@ window.Asteroids = (function(Asteroids) {
 
   GameView.prototype.start = function () {
     var img = new Image();
-    img.src = 'snowfall-1.png';
+    img.src = 'bluebackground.jpg';
     img.onload = function () {
       ctx.drawImage(img, 0, 0);
     };

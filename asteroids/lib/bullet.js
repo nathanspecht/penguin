@@ -3,7 +3,7 @@ window.Asteroids = (function(Asteroids) {
     Asteroids.MovingObject.apply(this, [attr]);
 
     this.color = "purple";
-    this.radius = 2;
+    this.radius = 10;
     this.ship = attr.ship;
     this.DTHETA = 2 * Math.PI / 128;
     this.vel = [this.ship.shootingDir[0] * 3, this.ship.shootingDir[1] * 3];
@@ -21,7 +21,7 @@ window.Asteroids = (function(Asteroids) {
   };
 
   shitImg = new Image();
-  shitImg.src = 'rainbowpoop.png';
+  shitImg.src = 'ice.png';
 
   Bullet.prototype.draw = function(ctx) {
     ctx.drawImage(shitImg, this.pos[0], this.pos[1]);

@@ -6,7 +6,7 @@ window.Asteroids = (function(Asteroids) {
     this.vel = [0, 0];
     this.pos = attr.pos;
     this.tickCount = 1;
-    this.shootingDir = [0, -1];
+    this.shootingDir = [0, 1];
 
     this.SPRITEWIDTH = 41;
     this.SPRITEHEIGHT = 42;

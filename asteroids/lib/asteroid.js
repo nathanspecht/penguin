@@ -6,9 +6,8 @@ window.Asteroids = (function(Asteroids) {
     var LENGTH = 3;
     Asteroids.MovingObject.apply(this, [attr]);
     this.color = Asteroid.randomColor();
-    this.radius = attr.radius || 60;
+    this.radius = attr.radius || 20;
     this.vel = Asteroids.Util.randomVec(LENGTH);
-
   };
 
   Asteroid.randomColor = function() {

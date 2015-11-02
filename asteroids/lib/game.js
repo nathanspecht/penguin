@@ -1,5 +1,6 @@
 window.Asteroids = (function(Asteroids) {
   var Game = Asteroids.Game = function(dimX, dimY) {
+    this.level = 1;
     this.DIM_X = dimX;
     this.DIM_Y = dimY;
     this.asteroids = [];
@@ -17,13 +18,12 @@ window.Asteroids = (function(Asteroids) {
   };
 
   Game.prototype.addAsteroids = function() {
-    for(var i=1; i<= Game.NUM_ASTEROIDS; i++) {
+    for (var i=1; i<= Game.NUM_ASTEROIDS; i++) {
       this.asteroids.push(new Asteroids.Asteroid({pos: this.randomPosition(), game: this}));
     }
   };
 
   Game.prototype.draw = function(ctx) {
-    // ctx.clearRect(0, 0, this.DIM_X, this.DIM_Y);
     this.allObjects().forEach(function(object) {
       object.draw(ctx);
     });
@@ -79,12 +79,21 @@ window.Asteroids = (function(Asteroids) {
     if (asteroid) {
       var aIdx = this.asteroids.indexOf(asteroid);
       this.asteroids = this.asteroids.slice(0,aIdx)
-                       .concat(this.asteroids.slice(aIdx+1));
+                       .concat(this.asteroids.slice(aIdx + 1));
+      if (this.asteroids.length === 0) {
+        this.levelUp();
+      }
     }
 
     var bIdx = this.bullets.indexOf(bullet);
     this.bullets = this.bullets.slice(0,bIdx)
                    .concat(this.bullets.slice(bIdx+1));
+  };
+
+  Game.prototype.levelUp = function () {
+    for (var i = 0; i < this.level; i++) {
+      this.addAsteroids();
+    }
   };
 
   Game.prototype.allObjects = function() {
