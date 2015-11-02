@@ -21,6 +21,7 @@
     var startGame = function() {
       var canvasEl = document.getElementById("game-canvas");
       var startModal = document.getElementById("start-modal");
+      var endModal = document.getElementById("end-modal");
       canvasEl.height = window.innerHeight - 200;
       canvasEl.width = window.innerWidth - 20;
       var newGame = new Asteroids.Game(canvasEl.width, canvasEl.height)
@@ -28,6 +29,7 @@
       var music = document.getElementById("music");
       music.play();
       startModal.className = "hidden";
+      endModal.className = "hidden"
       new Asteroids.GameView(newGame, ctx).start();
     }
   </script>
@@ -38,6 +40,12 @@
         <img src="sideways-penguin.png" class="two"></img>
         <div id="instructions">Press W-A-S-D to move and spacebar to shoot!</div>
         <div id="start-button" onclick="startGame()">Start!</div>
+      </div>
+      <div id="end-modal" class="hidden">
+        <img src="penguin.png" class="one"></img>
+        <img src="sideways-penguin.png" class="two"></img>
+        <div id="instructions">You lost!</div>
+        <div id="start-button" onclick="startGame()">Replay</div>
       </div>
       <div id="level" class="hidden">Level 1</div>
     <canvas id="game-canvas"></canvas>

@@ -52,13 +52,22 @@ html {
   border-radius: 3px;
 }
 
+#end-modal {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.72);
+  z-index: 10001;
+  border-radius: 3px;
+}
+
 #start-button {
   height: 100px;
   width: 270px;
   background: white;
   text-align: center;
   font-family: chewy;
-  font-size: 80px;
+  font-size: 70px;
   border-radius: 10px;
   margin: auto;
   position: relative;
