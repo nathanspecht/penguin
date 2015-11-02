@@ -3,12 +3,24 @@ window.Asteroids = (function(Asteroids) {
   var HEX_DIGITS = "0123456789ABCDEF";
 
   var Asteroid = Asteroids.Asteroid = function(attr) {
-    var LENGTH = 3;
     Asteroids.MovingObject.apply(this, [attr]);
+
+    this.LENGTH = 3;
     this.color = Asteroid.randomColor();
     this.radius = attr.radius || 20;
-    this.vel = Asteroids.Util.randomVec(LENGTH);
+    this.vel = Asteroids.Util.randomVec(this.LENGTH);
+    this.tickCount = 1;
+
+    this.SPRITEWIDTH = 32;
+    this.SPRITEHEIGHT = 64;
+    this.SPRITECOLUMNS = 4;
+    this.SPRITEROWS = 4;
+    this.SPRITEFRAMES = 16;
+    this.SPRITEIMAGE = new Image();
+    this.SPRITEIMAGE.src = "/Users/nathan_specht/workspace/w6d1/asteroids/snowmen.png";
   };
+
+  Asteroids.Util.inherits(Asteroid, Asteroids.MovingObject);
 
   Asteroid.randomColor = function() {
     var color ="#";
@@ -19,14 +31,16 @@ window.Asteroids = (function(Asteroids) {
     return color;
   };
 
-  toiletImg = new Image();
-  toiletImg.src = 'toilet.png';
-
   Asteroid.prototype.draw = function(ctx) {
-    ctx.drawImage(toiletImg, this.pos[0], this.pos[1]);
+    ctx.drawImage(
+      this.SPRITEIMAGE,
+      this.spriteCoords()[0], this.spriteCoords()[1],
+      this.SPRITEWIDTH, this.SPRITEHEIGHT,
+      this.pos[0] - this.radius, this.pos[1] - this.radius,
+      this.SPRITEWIDTH, this.SPRITEHEIGHT
+    );
   };
 
-  Asteroids.Util.inherits(Asteroid, Asteroids.MovingObject);
 
   return Asteroids;
 

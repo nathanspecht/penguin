@@ -9,7 +9,7 @@ window.Asteroids = (function(Asteroids) {
     this.ship = new Asteroids.Ship({pos: this.randomPosition(), game: this});
   };
 
-  Game.NUM_ASTEROIDS = 5;
+  Game.NUM_ASTEROIDS = 3;
 
   Game.prototype.randomPosition = function() {
     var randX = Math.random() * this.DIM_X;
@@ -78,7 +78,7 @@ window.Asteroids = (function(Asteroids) {
   Game.prototype.remove = function(asteroid, bullet) {
     if (asteroid) {
       var aIdx = this.asteroids.indexOf(asteroid);
-      this.asteroids = this.asteroids.slice(0,aIdx)
+      this.asteroids = this.asteroids.slice(0, aIdx)
                        .concat(this.asteroids.slice(aIdx + 1));
       if (this.asteroids.length === 0) {
         this.levelUp();
@@ -91,9 +91,20 @@ window.Asteroids = (function(Asteroids) {
   };
 
   Game.prototype.levelUp = function () {
+    this.level += 1;
     for (var i = 0; i < this.level; i++) {
       this.addAsteroids();
     }
+    this.showLevel();
+  };
+
+  Game.prototype.showLevel = function () {
+    level = document.getElementById("level");
+    level.innerText = "Level " + this.level;
+    level.className = "";
+    window.setTimeout(function(){
+      level.className="hidden";
+    }, 2000);
   };
 
   Game.prototype.allObjects = function() {

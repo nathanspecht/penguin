@@ -14,8 +14,8 @@ window.Asteroids = (function(Asteroids) {
     this.SPRITEROWS = 8;
     this.SPRITEFRAMES = 64;
     this.DTHETA = 2 * Math.PI / this.SPRITEFRAMES;
-    this.SHIPIMAGE = new Image();
-    this.SHIPIMAGE.src = "/Users/nathan_specht/workspace/w6d1/asteroids/Fother-penguin.png";
+    this.SPRITEIMAGE = new Image();
+    this.SPRITEIMAGE.src = "/Users/nathan_specht/workspace/w6d1/asteroids/Fother-penguin.png";
   };
 
   Asteroids.Util.inherits(Ship, Asteroids.MovingObject);
@@ -54,20 +54,14 @@ window.Asteroids = (function(Asteroids) {
   Ship.prototype.tick = function () {
     this.tickCount += 1;
     this.rotate();
-    if (this.tickCount === 64) {
+    if (this.tickCount === this.SPRITEFRAMES) {
       this.tickCount = 0;
     }
   };
 
-  Ship.prototype.spriteCoords = function () {
-    var sx = this.tickCount % this.SPRITECOLUMNS * this.SPRITEWIDTH;
-    var sy = Math.floor(this.tickCount / this.SPRITEROWS) * this.SPRITEHEIGHT;
-    return [sx, sy];
-  };
-
-  Ship.prototype.draw = function () {
+  Ship.prototype.draw = function(ctx) {
     ctx.drawImage(
-      this.SHIPIMAGE,
+      this.SPRITEIMAGE,
       this.spriteCoords()[0], this.spriteCoords()[1],
       this.SPRITEWIDTH, this.SPRITEHEIGHT,
       this.pos[0] - this.radius, this.pos[1] - this.radius,

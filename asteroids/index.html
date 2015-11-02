@@ -14,18 +14,32 @@
     <script src="lib/snowflakes.js" charset="utf-8"></script>
     <link rel="stylesheet" type="text/css" href="asteroids.css">
     <link href='https://fonts.googleapis.com/css?family=Chewy' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
+    <audio id="music" src="Casanova.mp3" preload="auto" play="repeat"></audio>
   </head>
-  <h1>  P  e  n  g  u  i  n  </h1>
-  <div class="asteroids">
-    <canvas id="game-canvas"></canvas>
-
-    <script>
+  <script>
+    var startGame = function() {
       var canvasEl = document.getElementById("game-canvas");
+      var startModal = document.getElementById("start-modal");
       canvasEl.height = window.innerHeight - 200;
       canvasEl.width = window.innerWidth - 20;
       var newGame = new Asteroids.Game(canvasEl.width, canvasEl.height)
       var ctx = canvasEl.getContext("2d");
+      var music = document.getElementById("music");
+      music.play();
+      startModal.className = "hidden";
       new Asteroids.GameView(newGame, ctx).start();
-    </script>
+    }
+  </script>
+  <h1>  P  e  n  g  u  i  n  </h1>
+  <div class="asteroids">
+      <div id="start-modal">
+        <img src="penguin.png" class="one"></img>
+        <img src="sideways-penguin.png" class="two"></img>
+        <div id="instructions">Press W-A-S-D to move and spacebar to shoot!</div>
+        <div id="start-button" onclick="startGame()">Start!</div>
+      </div>
+      <div id="level" class="hidden">Level 1</div>
+    <canvas id="game-canvas"></canvas>
   </div>
 </html>

@@ -9,14 +9,14 @@ window.Asteroids = (function(Asteroids) {
     var img = new Image();
     img.src = 'bluebackground.jpg';
     img.onload = function () {
-      ctx.drawImage(img, 0, 0);
-    };
+      this.ctx.drawImage(img, 0, 0);
+    }.bind(this);
 
     this.bindKeyHandlers();
-    this.snowflakes = new Asteroids.Snowflakes(ctx, canvasEl.width, canvasEl.height);
-
+    this.snowflakes = new Asteroids.Snowflakes(this.ctx, this.game.DIM_X, this.game.DIM_Y);
+    this.game.showLevel();
     window.setInterval(function () {
-      ctx.drawImage(img, 0, 0);
+      this.ctx.drawImage(img, 0, 0);
       this.game.step();
       this.snowflakes.draw();
       this.game.draw(this.ctx);

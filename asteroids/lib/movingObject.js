@@ -46,6 +46,12 @@ window.Asteroids = (function (Asteroids) {
     return true;
   };
 
+  MovingObject.prototype.spriteCoords = function () {
+    var sx = this.tickCount % this.SPRITECOLUMNS * this.SPRITEWIDTH;
+    var sy = Math.floor(this.tickCount / this.SPRITEROWS) * this.SPRITEHEIGHT;
+    return [sx, sy];
+  };
+
   return Asteroids;
 
 })(window.Asteroids || {});
