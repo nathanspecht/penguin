@@ -1,0 +1,111 @@
+#game-canvas {
+  border-radius: 3px;
+  background-image: url("bluebackground.jpg");
+  box-shadow: 0px 0px 10px white;
+  border: 1px solid white;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+}
+
+h1 {
+  font-family: Chewy;
+  text-align: center;
+  color: white;
+  font-size: 70px;
+  margin: 10px;
+  text-shadow: 2px 2px black;
+}
+
+.asteroids {
+  display: flex;
+  position: relative;
+  width: 90%;
+  height: 80%;
+  margin: auto;
+}
+
+body {
+  background: linear-gradient(35deg, #366E93 0%,#7BA9B9);
+  height: 100%;
+}
+
+html {
+  height: 100%;
+}
+
+#level {
+  position: absolute;
+  z-index: 10000;
+  top: 20%;
+  color: #EBE146;
+  font-family: chewy;
+  font-size: 100px;
+  width: 100%;
+  text-align: center;
+  text-shadow: 2px 2px black;
+}
+
+#start-modal {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.72);
+  z-index: 10001;
+  border-radius: 3px;
+}
+
+#end-modal {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.72);
+  z-index: 10001;
+  border-radius: 3px;
+}
+
+#start-button {
+  height: 100px;
+  width: 270px;
+  background: white;
+  text-align: center;
+  font-family: chewy;
+  font-size: 70px;
+  border-radius: 10px;
+  margin: auto;
+  position: relative;
+  top: 53%;
+  box-shadow: 2px 2px #EBAE46;
+}
+
+#start-button:hover {
+  box-shadow: 0px 0px 40px white;
+}
+
+#instructions {
+  color: white;
+  font-family: 'Indie Flower', cursive;;
+  font-size: 40px;
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  top: 20%;
+}
+
+img.one {
+  position: absolute;
+  top: 47%;
+  right: 38%;
+}
+
+img.two {
+  position: absolute;
+  top: 12%;
+  left: 10%;
+}
+
+.hidden {
+  display: none;
+}
+
+/*gold color: #EBAE46*/
