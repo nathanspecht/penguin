@@ -20,11 +20,12 @@
   <script>
     var startGame = function() {
       var canvasEl = document.getElementById("game-canvas");
+      var asteroidsDiv = document.getElementsByClassName("asteroids")[0];
       var startModal = document.getElementById("start-modal");
       var endModal = document.getElementById("end-modal");
-      canvasEl.height = window.innerHeight - 200;
-      canvasEl.width = window.innerWidth - 20;
       var newGame = new Asteroids.Game(canvasEl.width, canvasEl.height)
+      canvasEl.width = asteroidsDiv.offsetWidth;
+      canvasEl.height = asteroidsDiv.offsetHeight;
       var ctx = canvasEl.getContext("2d");
       var music = document.getElementById("music");
       music.play();

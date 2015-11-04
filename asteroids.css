@@ -14,18 +14,20 @@ h1 {
   color: white;
   font-size: 70px;
   margin: 10px;
+  text-shadow: 2px 2px black;
 }
 
 .asteroids {
   display: flex;
   position: relative;
   width: 90%;
-  height: 60%;
+  height: 80%;
   margin: auto;
 }
 
 body {
   background: linear-gradient(35deg, #366E93 0%,#7BA9B9);
+  height: 100%;
 }
 
 html {
@@ -36,11 +38,12 @@ html {
   position: absolute;
   z-index: 10000;
   top: 20%;
-  color: yellow;
+  color: #EBE146;
   font-family: chewy;
   font-size: 100px;
   width: 100%;
   text-align: center;
+  text-shadow: 2px 2px black;
 }
 
 #start-modal {
@@ -72,6 +75,7 @@ html {
   margin: auto;
   position: relative;
   top: 53%;
+  box-shadow: 2px 2px #EBAE46;
 }
 
 #start-button:hover {
@@ -103,3 +107,5 @@ img.two {
 .hidden {
   display: none;
 }
+
+/*gold color: #EBAE46*/
